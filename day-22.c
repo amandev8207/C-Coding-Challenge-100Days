@@ -1,24 +1,26 @@
-// #1524. Number of Sub-arrays With Odd Sum
+// 1749. Maximum Absolute Sum of Any Subarray
+// Medium
+// Topics
+// Companies
+// Hint
+// You are given an integer array nums. The absolute sum of a subarray [numsl, numsl+1, ..., numsr-1, numsr] is abs(numsl + numsl+1 + ... + numsr-1 + numsr).
 
-// Given an array of integers arr, return the number of subarrays with an odd sum.
+// Return the maximum absolute sum of any (possibly empty) subarray of nums.
 
-// Since the answer can be very large, return it modulo 109 + 7.
+// Note that abs(x) is defined as follows:
+
+// If x is a negative integer, then abs(x) = -x.
+// If x is a non-negative integer, then abs(x) = x.
 
 
 
-// #define MOD (int)(1e9 + 7)
-// int numOfSubarrays(int *arr, int arrSize) {
-//   int evenCnt = 0, oddCnt = 0; // even and odd sum subarray cnt end with arr[i]
-//   uint64_t rs = 0;
-//   for (int i = 0, tmp; i < arrSize; i++) {
-//     if (arr[i] % 2) {
-//       tmp = evenCnt;
-//       evenCnt = oddCnt;
-//       oddCnt = tmp + 1; // arr[i] is new odd sum subarray
-//     } else {
-//       evenCnt++; // arr[i] is new even sum subarray
-//     }
-//     rs = (rs + oddCnt) % MOD; // add new subarray cnt to result
-//   }
-//   return (int)rs;
+// int maxAbsoluteSum(int* nums, int numsSize) {
+//     int max = INT_MIN, min = INT_MAX, sum1 = 0, sum2 = 0;
+//     for (int idx=0;idx<numsSize;idx++) {
+//         sum1 = sum1+nums[idx] > 0 ? sum1+nums[idx] : 0;
+//         sum2 = nums[idx] < nums[idx]+sum2 ? nums[idx] : nums[idx]+sum2;
+//         max = max > sum1 ? max : sum1;
+//         min = min < sum2 ? min : sum2;
+//     }    
+//     return abs(max) > abs(min) ? abs(max) : abs(min);
 // }
